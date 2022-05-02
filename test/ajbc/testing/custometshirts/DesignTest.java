@@ -10,19 +10,16 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 class DesignTest {
 
 	private Design design = new Design();
-	
-	public DesignTest() {
-	}
-	
+
 	@Test
-	void checkValueOfFieldsOfEmptyConstractor() {
+	void checkValueOfFields() {
 		assertEquals(20, design.width);
 		assertEquals(10, design.height);
 		assertEquals("", design.slogan);
 		assertEquals(new Color(), design.color);
 		assertEquals(1, design.complexity);
 	}
-	
+
 	@Test
 	void checkSetWidth() {
 		design.setWidth(30);
@@ -34,16 +31,17 @@ class DesignTest {
 		design.setHeight(15);
 		assertEquals(15, design.height);
 	}
-	
+
 	@Test
 	void checkSetComplexity() {
 		design.setComplexity(102);
 		assertEquals(1, design.complexity);
 	}
-	
+
 	@Test
 	void checkCalculateArea() {
-		double area = design.height * design.width; 
+		double area = design.height * design.width;
 		assertEquals(area, design.calculateArea());
 	}
+
 }
