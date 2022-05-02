@@ -1,20 +1,22 @@
 package ajbc.testing.custometshirts;
 
+import java.util.Objects;
+
 public class Color {
-	protected static final String RED = "RED";
-	protected static final String GREEN = "GREEN";
-	protected static final String BLUE = "BLUE";
-	protected static final int NUM_OF_COLORS = 3;
-	protected static final int MAX_RANGE = 255;
-	protected static final int MIN_RANGE = 0;
+	private static final String RED = "RED";
+	private static final String GREEN = "GREEN";
+	private static final String BLUE = "BLUE";
+	private static final short MAX_RANGE = 255;
+	private static final short MIN_RANGE = 0;
 
 	protected short red; // 0-255
 	protected short green; // 0-255
 	protected short blue; // 0-255
 
 	public Color() {
+		this(MIN_RANGE, MIN_RANGE, MIN_RANGE);
 	}
-	
+
 	public Color(short red, short green, short blue) {
 		setRed(red);
 		setGreen(green);
@@ -41,20 +43,26 @@ public class Color {
 	}
 
 	public String getDominant() {
-		if (red > green && red > blue)
+		double max = Math.max(red, Math.max(green, blue));
+		if (max == red)
 			return RED;
-		else if (green > red && green > blue)
-			return GREEN;
-		else
-			return BLUE;
+		return max == green ? GREEN : BLUE;
 	}
 
 	public float[] normalized() {
-		float[] colorsNormalized = new float[NUM_OF_COLORS];
-		colorsNormalized[0] = red / MAX_RANGE;
-		colorsNormalized[1] = green / MAX_RANGE;
-		colorsNormalized[2] = blue / MAX_RANGE;
-		return colorsNormalized;
+		return new float[] { (float) red / MAX_RANGE, (float) green / MAX_RANGE, (float) blue / MAX_RANGE };
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Color other = (Color) obj;
+		return blue == other.blue && green == other.green && red == other.red;
 	}
 
 	@Override

@@ -17,6 +17,7 @@ public class Tshirt {
 	protected double finalPrice;
 
 	public Tshirt() {
+		this(Size.M, new Design(), 0.1, 3);
 	}
 
 	public Tshirt(Size size, Design design, double demandFactor, double basePrice) {
@@ -25,6 +26,10 @@ public class Tshirt {
 		this.size = size;
 		this.design = design;
 		calculateFinalPrice();
+	}	
+
+	protected void setSize(Size size) {
+		this.size = size;
 	}
 
 	protected void setBasePrice(double basePrice) {
