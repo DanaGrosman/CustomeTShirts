@@ -19,9 +19,9 @@ class ColorTest {
 
 	@Test
 	void checkArrayIsNotNull() {
-		assertNotNull(colors[0]);
-		assertNotNull(colors[1]);
-		assertNotNull(colors[2]);
+		for (int i = 0; i < colors.length; i++) {
+			assertNotNull(colors[i]);
+		}
 	}
 
 	@Test
